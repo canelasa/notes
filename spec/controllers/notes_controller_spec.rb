@@ -71,6 +71,7 @@ RSpec.describe NotesController, type: :controller do
       get :show, params: { id: @note.id }
       json = JSON.parse(response.body)
       expect(json['id']).to eq(@note.id)
+      expect(response).to be_success
     end
 
     it "should include associated tags in response" do
@@ -91,6 +92,7 @@ RSpec.describe NotesController, type: :controller do
       json = JSON.parse(response.body)
       expect(json['content']).to eq('Updated this note.')
       expect(json['title']).to eq('Updated First')
+      expect(response).to be_success
     end
 
     it "should properly deal with validation errors" do
